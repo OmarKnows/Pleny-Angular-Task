@@ -3,15 +3,6 @@
   text-decoration: none;
 }
 
-@font-face {
-  font-family: "Inter";
-  src: url(../../../../assets/fonts/Inter/Inter-Regular.ttf);
-}
-
-body {
-  font-family: "Inter", sans-serif;
-}
-
 nav {
   background: white;
   width: 100%;
@@ -25,14 +16,12 @@ nav {
 .brand {
   color: black;
   font-size: 16px;
-  font-weight: 500;
   margin-right: 80px;
 }
 
 nav div a {
   color: #667085;
   font-size: 16px;
-  font-weight: 500;
 }
 
 .logo {
