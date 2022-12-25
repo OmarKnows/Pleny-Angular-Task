@@ -1,6 +1,4 @@
 * {
-  padding: 0;
-  margin: 0;
   list-style: none;
   text-decoration: none;
 }
@@ -16,52 +14,36 @@ body {
 
 nav {
   background: white;
-  height: 80px;
   width: 100%;
   border-bottom-style: solid;
   border-color: #424242;
   border-width: 1px;
+  padding-top: 28px;
+  padding-bottom: 28px;
 }
 
-label.brand {
+.brand {
   color: black;
   font-size: 16px;
   font-weight: 500;
-  float: left;
   margin-right: 80px;
 }
 
-.navItem-Right {
-  float: right;
-  margin-right: 130px;
-  margin-top: 28px;
-  /* not working */
-}
-
-.navItem-Left {
-  float: left;
-  margin-top: 28px;
-  /* not working */
-}
-
-nav ul li {
-  display: inline-block;
-  margin: 0 5px;
-}
-
-nav ul li a {
+nav div a {
   color: #667085;
   font-size: 16px;
   font-weight: 500;
 }
 
 .logo {
-  background: url("../../../../assets/logo.png");
   height: 32px;
   width: 32px;
-  float: left;
-  display: block;
   margin-left: 112px;
   margin-right: 9px;
-  margin-top: 32px;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
