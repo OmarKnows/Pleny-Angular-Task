@@ -63,13 +63,27 @@
             <div class="cardContainer">
               <p class="cardTitle">{{ product.name }}</p>
               <p class="cardDescription">{{ product.description }}</p>
-              <p class="cardPrice">{{ product.price }} USD</p>
-              <p class="cardDetails">Brand: {{ product.brand }}</p>
-              <p class="cardDetails">Category: {{ product.category }}</p>
-              <p class="cardDetails">In Stock: {{ product.stock }}</p>
-              <p class="cardRating">
-                {{ product.rating }} ({{ product.reviews }})
-              </p>
+              <div style="margin-bottom: 21px">
+                <span class="cardText1">{{ product.price }}</span>
+                <span class="cardText2"> USD</span>
+              </div>
+              <div class="cardDetails">
+                <span class="cardText2">Brand: </span>
+                <span class="cardText3">{{ product.brand }}</span>
+              </div>
+              <div class="cardDetails">
+                <span class="cardText2">Category: </span>
+                <span class="cardText3">{{ product.category }}</span>
+              </div>
+              <div class="cardDetails">
+                <span class="cardText2">In Stock: </span>
+                <span class="cardText3">{{ product.stock }}</span>
+              </div>
+
+              <div class="ratingReviewContainer">
+                <span class="cardRating">{{ product.rating }}</span>
+                <span class="cardReview"> ({{ product.reviews }})</span>
+              </div>
               <button class="cardBtn">ADD TO CART</button>
             </div>
           </div>

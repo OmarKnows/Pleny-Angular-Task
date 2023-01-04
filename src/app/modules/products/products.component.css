@@ -32,19 +32,21 @@
   margin-bottom: 8px;
 }
 
-.cardDescription {
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 17px;
-}
-
-.cardPrice {
+.cardText1 {
   font-size: 14px;
   font-weight: 700;
   line-height: 17px;
+  letter-spacing: 0em;
 }
 
-.cardDetails {
+.cardText2 {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+  letter-spacing: 0em;
+}
+
+.cardText3 {
   font-size: 14px;
   font-weight: 600;
   line-height: 17px;
@@ -72,9 +74,24 @@
   padding-left: 16px;
 }
 
-.cardRating {
+.ratingReviewContainer {
   margin-right: 16px;
+  margin-bottom: 16px;
   text-align: right;
+}
+
+.cardRating {
+  color: #f4b000;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.cardReview {
+  color: #d0d5dd;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
 }
 
 .header {
@@ -126,4 +143,8 @@ label {
   font-weight: 400;
   line-height: 22px;
   letter-spacing: 0em;
+}
+
+.cardDetails {
+  margin-bottom: 8px;
 }
