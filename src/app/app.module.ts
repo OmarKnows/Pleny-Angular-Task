@@ -6,6 +6,7 @@ import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { ProductsComponent } from './modules/products/products.component';
 import { LoginComponent } from './modules/login/login.component';
+import { AppRoutingModule } from './app-routing.modules';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,7 @@ import { LoginComponent } from './modules/login/login.component';
     LoginComponent,
     ProductsComponent,
   ],
-  imports: [BrowserModule],
+  imports: [BrowserModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],
 })

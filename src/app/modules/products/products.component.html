@@ -1,1 +1,82 @@
-<p>products works!</p>
+<p class="header">Header 1</p>
+<p class="path">Home / Products / Route / Route</p>
+<div class="row">
+  <div class="filterColumn">
+    <div class="filter">
+      <p class="filterTitle">Products</p>
+      <div class="radioGroup">
+        <input type="radio" name="product" value="All" />
+        <label>All()</label><br />
+        <input type="radio" name="product" value="Smartphones" />
+        <label>Smartphones()</label><br />
+        <input type="radio" name="product" value="Laptops" />
+        <label>Laptops()</label><br />
+        <input type="radio" name="product" value="Fragrances" />
+        <label>Fragrances()</label><br />
+        <input type="radio" name="product" value="Skincare" />
+        <label>Skincare()</label><br />
+        <input type="radio" name="product" value="Groceries" />
+        <label>Groceries()</label><br />
+        <input type="radio" name="product" value="Home decoration" />
+        <label>Home decoration()</label><br />
+        <input type="radio" name="product" value="Furniture" />
+        <label>Furniture()</label><br />
+        <input type="radio" name="product" value="Tops" />
+        <label>Tops()</label><br />
+        <input type="radio" name="product" value="Women's dresses" />
+        <label>Women's dresses()</label><br />
+        <input type="radio" name="product" value="Women's shoes" />
+        <label>Women's shoes()</label><br />
+        <input type="radio" name="product" value="Men's shirts" />
+        <label>Men's shirts()</label><br />
+        <input type="radio" name="product" value="Men's shoes" />
+        <label>Men's shoes()</label><br />
+        <input type="radio" name="product" value="Mens's watches" />
+        <label>Mens's watches()</label><br />
+        <input type="radio" name="product" value="Women's watches" />
+        <label>Women's watches()</label><br />
+        <input type="radio" name="product" value="Women's bags" />
+        <label>Women's bags()</label><br />
+        <input type="radio" name="product" value="Women's jewellery" />
+        <label>Women's jewellery()</label><br />
+        <input type="radio" name="product" value="Sunglasses" />
+        <label>Sunglasses()</label><br />
+        <input type="radio" name="product" value="Automotive" />
+        <label>Automotive()</label><br />
+        <input type="radio" name="product" value="Motorcycle" />
+        <label>Motorcycle()</label><br />
+        <input type="radio" name="product" value="Lighting" />
+        <label>Lighting()</label><br />
+      </div>
+    </div>
+  </div>
+  <div class="productColumn">
+    <table>
+      <tr>
+        <td *ngFor="let product of products">
+          <div class="card">
+            <img
+              class="thumbnail"
+              src="../../../assets/product_thumbnail.png"
+              alt="thumbnail"
+            />
+            <div class="cardContainer">
+              <p class="cardTitle">{{ product.name }}</p>
+              <p class="cardDescription">{{ product.description }}</p>
+              <p class="cardPrice">{{ product.price }} USD</p>
+              <p class="cardDetails">Brand: {{ product.brand }}</p>
+              <p class="cardDetails">Category: {{ product.category }}</p>
+              <p class="cardDetails">In Stock: {{ product.stock }}</p>
+              <p class="cardRating">
+                {{ product.rating }} ({{ product.reviews }})
+              </p>
+              <button class="cardBtn">ADD TO CART</button>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr></tr>
+    </table>
+  </div>
+</div>
+<p>pagination goes here</p>

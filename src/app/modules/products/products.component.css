@@ -1,0 +1,129 @@
+.filterColumn {
+  float: left;
+  width: 27.5%;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.thumbnail {
+  border-radius: 8px;
+  width: 282px;
+  height: 258px;
+}
+
+.card {
+  width: 282px;
+  height: 580px;
+  border: 0.5px solid #d0d5dd;
+  border-radius: 8px;
+  margin-left: 27px;
+  padding-bottom: 16px;
+}
+
+.cardTitle {
+  font-size: 20px;
+  font-weight: 700;
+  color: #344054;
+  margin-top: 15px;
+  margin-bottom: 8px;
+}
+
+.cardDescription {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+}
+
+.cardPrice {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 17px;
+}
+
+.cardDetails {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 17px;
+  letter-spacing: 0em;
+}
+
+.cardBtn {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 22px;
+  letter-spacing: 0em;
+  color: #344054;
+  background-color: #41cccc;
+  padding: 0px;
+  border: 0px;
+  height: 50px;
+  width: 250px;
+  left: 0px;
+  top: 0px;
+  border-radius: 4px;
+  border-color: transparent;
+}
+
+.cardContainer {
+  padding-left: 16px;
+}
+
+.cardRating {
+  margin-right: 16px;
+  text-align: right;
+}
+
+.header {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 39px;
+  letter-spacing: 0em;
+  margin-top: 80px;
+  margin-left: 114px;
+}
+
+.path {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0em;
+  margin-top: 29px;
+  margin-left: 114px;
+}
+
+.filter {
+  margin-left: 114px;
+  width: 282px;
+  height: 588px;
+  border: 0.5px solid #d0d5dd;
+  border-radius: 8px;
+}
+
+.filterTitle {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 22px;
+  letter-spacing: 0em;
+  margin-top: 12px;
+  margin-left: 12px;
+}
+
+.radioGroup {
+  margin-left: 12px;
+  padding: 3px;
+}
+
+input[type="radio"] {
+  accent-color: #41cccc;
+}
+
+label {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0em;
+}
