@@ -10,11 +10,13 @@ import { ProductService } from './products.service';
 })
 export class ProductsComponent implements OnInit {
   products: Product[] = [];
+  productCategories: string[] = [];
 
   constructor(private productsService: ProductService) {}
 
   ngOnInit(): void {
     this.products = this.productsService.getProducts();
+    this.productCategories = this.productsService.getProductCategories();
     console.log(this.products);
   }
 }

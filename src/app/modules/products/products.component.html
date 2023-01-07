@@ -7,96 +7,62 @@
       <div class="radioGroup">
         <input type="radio" name="product" value="All" />
         <label>All()</label><br />
-        <input type="radio" name="product" value="Smartphones" />
-        <label>Smartphones()</label><br />
-        <input type="radio" name="product" value="Laptops" />
-        <label>Laptops()</label><br />
-        <input type="radio" name="product" value="Fragrances" />
-        <label>Fragrances()</label><br />
-        <input type="radio" name="product" value="Skincare" />
-        <label>Skincare()</label><br />
-        <input type="radio" name="product" value="Groceries" />
-        <label>Groceries()</label><br />
-        <input type="radio" name="product" value="Home decoration" />
-        <label>Home decoration()</label><br />
-        <input type="radio" name="product" value="Furniture" />
-        <label>Furniture()</label><br />
-        <input type="radio" name="product" value="Tops" />
-        <label>Tops()</label><br />
-        <input type="radio" name="product" value="Women's dresses" />
-        <label>Women's dresses()</label><br />
-        <input type="radio" name="product" value="Women's shoes" />
-        <label>Women's shoes()</label><br />
-        <input type="radio" name="product" value="Men's shirts" />
-        <label>Men's shirts()</label><br />
-        <input type="radio" name="product" value="Men's shoes" />
-        <label>Men's shoes()</label><br />
-        <input type="radio" name="product" value="Mens's watches" />
-        <label>Mens's watches()</label><br />
-        <input type="radio" name="product" value="Women's watches" />
-        <label>Women's watches()</label><br />
-        <input type="radio" name="product" value="Women's bags" />
-        <label>Women's bags()</label><br />
-        <input type="radio" name="product" value="Women's jewellery" />
-        <label>Women's jewellery()</label><br />
-        <input type="radio" name="product" value="Sunglasses" />
-        <label>Sunglasses()</label><br />
-        <input type="radio" name="product" value="Automotive" />
-        <label>Automotive()</label><br />
-        <input type="radio" name="product" value="Motorcycle" />
-        <label>Motorcycle()</label><br />
-        <input type="radio" name="product" value="Lighting" />
-        <label>Lighting()</label><br />
+        <div *ngFor="let category of productCategories">
+          <input type="radio" name="product" [value]="category" />
+          <label>{{ category }}()</label><br />
+        </div>
       </div>
     </div>
   </div>
   <div class="productColumn">
-    <table>
-      <tr>
-        <td *ngFor="let product of products">
-          <div class="card">
-            <img
-              class="thumbnail"
-              src="../../../assets/product_thumbnail.png"
-              alt="thumbnail"
-            />
-            <div class="cardContainer">
-              <p class="cardTitle">{{ product.name }}</p>
-              <p class="cardDescription">{{ product.description }}</p>
-              <div style="margin-bottom: 21px">
-                <span class="cardText1"
-                  ><s>{{ product.price }}</s></span
-                >
-                <span style="margin-right: 14px" class="cardText2"
-                  ><s> USD</s>
-                </span>
-                <span class="cardText1">{{ product.price }}</span>
-                <span class="cardText2"> USD</span>
-              </div>
-              <div class="cardDetails">
-                <span class="cardText2">Brand: </span>
-                <span class="cardText3">{{ product.brand }}</span>
-              </div>
-              <div class="cardDetails">
-                <span class="cardText2">Category: </span>
-                <span class="cardText3">{{ product.category }}</span>
-              </div>
-              <div class="cardDetails">
-                <span class="cardText2">In Stock: </span>
-                <span class="cardText3">{{ product.stock }}</span>
-              </div>
-
-              <div class="ratingReviewContainer">
-                <span class="cardRating">{{ product.rating }}</span>
-                <span class="cardReview"> ({{ product.reviews }})</span>
-              </div>
-              <button class="cardBtn">ADD TO CART</button>
+    <div class="row">
+      <div *ngFor="let product of products" class="column">
+        <div class="card">
+          <div class="discount">{{ product.discountPercentage }}%</div>
+          <img
+            src="../../../assets/product_thumbnail.png"
+            alt="thumbnail"
+            class="thumbnail"
+          />
+          <div class="cardContainer">
+            <p class="cardTitle">{{ product.title }}</p>
+            <p class="cardDescription">{{ product.description }}</p>
+            <div style="margin-bottom: 21px">
+              <span class="cardText1"
+                ><s>{{ product.price }}</s></span
+              >
+              <span style="margin-right: 14px" class="cardText2"
+                ><s> USD</s>
+              </span>
+              <span class="cardText1">{{
+                (
+                  product.price *
+                  (1 - product.discountPercentage / 100)
+                ).toFixed(2)
+              }}</span>
+              <span class="cardText2"> USD</span>
             </div>
+            <div class="cardDetails">
+              <span class="cardText2">Brand: </span>
+              <span class="cardText3">{{ product.brand }}</span>
+            </div>
+            <div class="cardDetails">
+              <span class="cardText2">Category: </span>
+              <span class="cardText3">{{ product.category }}</span>
+            </div>
+            <div class="cardDetails">
+              <span class="cardText2">In Stock: </span>
+              <span class="cardText3">{{ product.stock }}</span>
+            </div>
+
+            <div class="ratingReviewContainer">
+              <span class="cardRating">{{ product.rating }}</span>
+              <span class="cardReview"> (11)</span>
+            </div>
+            <button class="cardBtn">ADD TO CART</button>
           </div>
-        </td>
-      </tr>
-      <tr></tr>
-    </table>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-<p>pagination goes here</p>

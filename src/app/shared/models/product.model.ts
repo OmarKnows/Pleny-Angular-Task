@@ -1,12 +1,15 @@
 export class Product {
   constructor(
-    public name: string,
+    public id: number,
+    public title: string,
     public description: string,
     public price: number,
+    public discountPercentage: number,
+    public rating: number,
+    public stock: number,
     public brand: string,
     public category: string,
-    public stock: number,
-    public rating: number,
-    public reviews: number
+    public thumbnail: string,
+    public images: string[]
   ) {}
 }
