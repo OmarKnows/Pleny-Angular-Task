@@ -1,115 +1,28 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { map } from 'rxjs/operators';
 import { Product } from 'src/app/shared/models/product.model';
 
+@Injectable({ providedIn: 'root' })
 export class ProductService {
-  private products: Product[] = [
-    new Product(
-      1,
-      'iPhone 9',
-      'An apple mobile which is nothing like apple',
-      549,
-      12.96,
-      4.69,
-      94,
-      'Apple',
-      'smartphones',
-      '../../../assets/product_thumbnail.png',
-      ['...', '...', '...']
-    ),
-    new Product(
-      1,
-      'iPhone 9',
-      'An apple mobile which is nothing like apple',
-      549,
-      12.96,
-      4.69,
-      94,
-      'Apple',
-      'smartphones',
-      '../../../assets/product_thumbnail.png',
-      ['...', '...', '...']
-    ),
-    new Product(
-      1,
-      'iPhone 9',
-      'An apple mobile which is nothing like apple',
-      549,
-      12.96,
-      4.69,
-      94,
-      'Apple',
-      'smartphones',
-      '../../../assets/product_thumbnail.png',
-      ['...', '...', '...']
-    ),
-    new Product(
-      1,
-      'iPhone 9',
-      'An apple mobile which is nothing like apple',
-      549,
-      12.96,
-      4.69,
-      94,
-      'Apple',
-      'smartphones',
-      '../../../assets/product_thumbnail.png',
-      ['...', '...', '...']
-    ),
-    new Product(
-      1,
-      'iPhone 9',
-      'An apple mobile which is nothing like apple',
-      549,
-      12.96,
-      4.69,
-      94,
-      'Apple',
-      'smartphones',
-      '../../../assets/product_thumbnail.png',
-      ['...', '...', '...']
-    ),
-    new Product(
-      1,
-      'iPhone 9',
-      'An apple mobile which is nothing like apple',
-      549,
-      12.96,
-      4.69,
-      94,
-      'Apple',
-      'smartphones',
-      '../../../assets/product_thumbnail.png',
-      ['...', '...', '...']
-    ),
-  ];
+  constructor(private http: HttpClient) {}
 
-  productCategories: string[] = [
-    'smartphones',
-    'laptops',
-    'fragrances',
-    'skincare',
-    'groceries',
-    'home-decoration',
-    'furniture',
-    'tops',
-    'womens-dresses',
-    'womens-shoes',
-    'mens-shirts',
-    'mens-shoes',
-    'mens-watches',
-    'womens-watches',
-    'womens-bags',
-    'womens-jewellery',
-    'sunglasses',
-    'automotive',
-    'motorcycle',
-    'lighting',
-  ];
-
-  getProducts() {
-    return this.products.slice();
+  fetchProducts() {
+    return this.http.get('https://dummyjson.com/products').pipe(
+      map((response: any) => {
+        var { products } = response;
+        return products;
+      })
+    );
   }
 
   getProductCategories() {
-    return this.productCategories.slice();
+    return this.http
+      .get<string[]>('https://dummyjson.com/products/categories')
+      .pipe(
+        map((response: any) => {
+          return [...response];
+        })
+      );
   }
 }

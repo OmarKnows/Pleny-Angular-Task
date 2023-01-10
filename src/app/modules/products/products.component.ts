@@ -6,7 +6,6 @@ import { ProductService } from './products.service';
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css'],
-  providers: [ProductService],
 })
 export class ProductsComponent implements OnInit {
   products: Product[] = [];
@@ -15,8 +14,12 @@ export class ProductsComponent implements OnInit {
   constructor(private productsService: ProductService) {}
 
   ngOnInit(): void {
-    this.products = this.productsService.getProducts();
-    this.productCategories = this.productsService.getProductCategories();
-    console.log(this.products);
+    this.productsService.fetchProducts().subscribe((response) => {
+      this.products = response;
+    });
+
+    this.productsService.getProductCategories().subscribe((response) => {
+      this.productCategories = response;
+    });
   }
 }
