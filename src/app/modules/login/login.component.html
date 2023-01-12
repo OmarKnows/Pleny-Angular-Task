@@ -6,22 +6,30 @@
     <p class="header1">Log in to your account</p>
     <p class="header2">Welcome back! Please enter your details.</p>
   </div>
-  <form>
+  <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
     <div>
       <label style="text-align: left">Email</label>
     </div>
-    <input type="email" placeholder="Enter your email" />
+    <input
+      placeholder="Enter your email"
+      id="email"
+      name="email"
+      ngModel
+      required
+    />
     <div>
       <label>Password</label>
     </div>
-    <input type="password" placeholder="••••••••" />
+    <input
+      type="password"
+      placeholder="••••••••"
+      id="passowrd"
+      name="password"
+      ngModel
+      required
+    />
     <div>
-      <input
-        class="btn-primary"
-        type="submit"
-        routerLink="/products"
-        value="Sign in"
-      />
+      <button class="btn-primary" type="submit">Sign in</button>
     </div>
   </form>
 </div>
