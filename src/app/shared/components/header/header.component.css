@@ -41,6 +41,12 @@ nav div a {
   margin-right: 130px;
 }
 
+.headerLinks img {
+  width: 24px;
+  height: 24px;
+  display: flex;
+}
+
 .headerItem {
   margin-left: 20px;
 }
