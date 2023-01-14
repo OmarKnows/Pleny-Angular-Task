@@ -18,7 +18,7 @@
     <div class="row">
       <div *ngFor="let product of products" class="column">
         <div class="card">
-          <div class="discount">{{ product.discountPercentage }}%</div>
+          <div class="discount">{{ -product.discountPercentage }}%</div>
           <img
             src="../../../assets/product_thumbnail.png"
             alt="thumbnail"

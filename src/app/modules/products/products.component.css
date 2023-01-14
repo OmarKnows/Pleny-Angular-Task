@@ -87,8 +87,13 @@
   border-color: transparent;
 }
 
+.cardDescription {
+  width: 239px;
+  height: 34px;
+}
+
 .cardContainer {
-  padding-left: 16px;
+  padding: 16px 16px;
 }
 
 .ratingReviewContainer {

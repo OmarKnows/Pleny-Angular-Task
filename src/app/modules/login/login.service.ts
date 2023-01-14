@@ -10,19 +10,9 @@ export class loginService {
   constructor(private http: HttpClient) {}
 
   login(username: string, password: string) {
-    return this.http
-      .post<User>('https://dummyjson.com/auth/login', {
-        username,
-        password,
-      })
-      .pipe(
-        tap((res) => {
-          this.handleAuthentication(res);
-        })
-      );
-  }
-
-  private handleAuthentication(user: User) {
-    this.user.next(user);
+    return this.http.post<User>('https://dummyjson.com/auth/login', {
+      username,
+      password,
+    });
   }
 }
