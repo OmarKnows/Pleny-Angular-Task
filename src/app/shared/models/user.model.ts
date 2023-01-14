@@ -7,7 +7,7 @@ export class User {
     public lastName: string,
     public gender: string,
     public image: string,
-    private token: string
+    public token: string
   ) {}
 
   getToken() {

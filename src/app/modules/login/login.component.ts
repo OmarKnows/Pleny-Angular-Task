@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.authSubscription = this.agsm
-      .stateSelector((state) => state.userInfo)
+      .stateSelector((state) => state.user)
       .subscribe((stateValue) => {
         console.log(stateValue);
       });

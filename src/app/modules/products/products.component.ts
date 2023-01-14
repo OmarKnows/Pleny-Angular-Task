@@ -15,6 +15,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   products: Product[] = [];
   productCategories: string[] = [];
+  title: string = 'Products';
+  route: string = '';
 
   constructor(
     private agsm: AgsmService,
@@ -27,7 +29,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
       .stateSelector((state) => state.productsList)
       .subscribe((stateValue) => {
         const { productsResponse } = stateValue;
-        console.log(productsResponse);
         const { products, limit, skip, total } = productsResponse;
         this.products = products;
       });
@@ -40,5 +41,17 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.productsListSubscription.unsubscribe();
+  }
+
+  filter(event: any) {
+    console.log(event.target.value);
+    this.title = event.target.value;
+
+    if (event.target.value === 'Products') {
+      this.productActions.getproducts();
+    } else {
+      this.route = '/ ' + event.target.value;
+      this.productActions.searchProducts(event.target.value);
+    }
   }
 }

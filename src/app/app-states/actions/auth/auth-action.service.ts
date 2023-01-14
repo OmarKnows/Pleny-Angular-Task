@@ -20,8 +20,6 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class authActionsService {
-  user = new Subject<any>();
-
   constructor(
     private http: HttpClient,
     private agsm: AgsmService,
@@ -44,7 +42,7 @@ export class authActionsService {
         .toPromise();
 
       this.agsm.dispatch(LOGIN_SUCCESS, user);
-      localStorage.setItem('userInfo', user.token);
+      localStorage.setItem('userInfo', JSON.stringify(user));
       this.router.navigate(['/products']);
     } catch (e: any) {
       this.agsm.dispatch(LOGIN_FAIL, e.message);
@@ -54,6 +52,7 @@ export class authActionsService {
   autoLogin() {
     const userInfo = localStorage.getItem('userInfo');
     if (!userInfo) return;
-    this.user.next(userInfo);
+    this.router.navigate(['/products']);
+    // this.user.next(JSON.parse(userInfo));
   }
 }

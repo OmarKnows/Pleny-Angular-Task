@@ -4,5 +4,24 @@
     <label class="brand">ClickTik</label>
     <a routerLink="/">Home</a>
   </div>
-  <div style="margin-right: 130px"><a routerLink="/login">Login</a></div>
+  <div class="headerLinks">
+    <form
+      #searchForm="ngForm"
+      (ngSubmit)="onSubmit(searchForm)"
+      class="headerItem"
+    >
+      <input
+        *ngIf="isAuthenticated"
+        type="text"
+        placeholder="Search"
+        name="search"
+        ngModel
+        required
+      />
+    </form>
+    <a *ngIf="isAuthenticated" class="headerItem">Cart</a>
+    <a *ngIf="isAuthenticated" class="headerItem">Account</a>
+
+    <a *ngIf="!isAuthenticated" class="headerItem" routerLink="/login">Login</a>
+  </div>
 </nav>

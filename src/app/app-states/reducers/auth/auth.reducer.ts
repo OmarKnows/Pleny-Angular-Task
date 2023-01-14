@@ -10,6 +10,7 @@ export const authReducer = (
   state: any = {
     loading: true,
     userInfo: {},
+    isAuthenticated: false,
     error: null,
   }
 ) => {
@@ -20,6 +21,7 @@ export const authReducer = (
       return {
         loading: false,
         userInfo: action.payload,
+        isAuthenticated: true,
         error: null,
       };
     case LOGIN_FAIL:
@@ -29,7 +31,10 @@ export const authReducer = (
         error: action.payload,
       };
     case LOGOUT:
-      return {};
+      return {
+        userInfo: {},
+        isAuthenticated: false,
+      };
     default:
       return state;
   }

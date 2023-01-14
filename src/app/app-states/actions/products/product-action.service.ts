@@ -4,6 +4,12 @@ import {
   PRODUCTS_FAIL,
   PRODUCTS_REQUEST,
   PRODUCTS_SUCCESS,
+  SEARCH_FAIL,
+  SEARCH_REQUEST,
+  SEARCH_SUCCESS,
+  FILTER_FAIL,
+  FILTER_REQUEST,
+  FILTER_SUCCESS,
 } from '../../types/products/types';
 import { AgsmService } from 'agsm';
 
@@ -30,6 +36,40 @@ export class productActionsService {
       this.agsm.dispatch(PRODUCTS_SUCCESS, products);
     } catch (e: any) {
       this.agsm.dispatch(PRODUCTS_FAIL, e.message);
+    }
+  }
+
+  async searchProducts(keyword: string) {
+    this.agsm.dispatch(SEARCH_REQUEST);
+
+    try {
+      const products = await this.http
+        .get<any>(
+          `https://dummyjson.com/products/search?q=${keyword}`,
+          httpOptions
+        )
+        .toPromise();
+      console.log(products);
+      this.agsm.dispatch(SEARCH_SUCCESS, products);
+    } catch (e: any) {
+      this.agsm.dispatch(SEARCH_FAIL, e.message);
+    }
+  }
+
+  async filterProducts(category: string) {
+    this.agsm.dispatch(FILTER_REQUEST);
+
+    try {
+      const products = await this.http
+        .get<any>(
+          `https://dummyjson.com/products/category/${category}`,
+          httpOptions
+        )
+        .toPromise();
+      console.log(products);
+      this.agsm.dispatch(FILTER_SUCCESS, products);
+    } catch (e: any) {
+      this.agsm.dispatch(FILTER_FAIL, e.message);
     }
   }
 }

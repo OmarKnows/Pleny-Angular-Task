@@ -36,3 +36,26 @@ nav div a {
   justify-content: space-between;
   align-items: center;
 }
+
+.headerLinks {
+  margin-right: 130px;
+}
+
+.headerItem {
+  margin-left: 20px;
+}
+
+.headerLinks input {
+  width: 312px;
+  height: 25px;
+  border: 0.5px solid #d0d5dd;
+  border-radius: 8px;
+  padding: 7px;
+  color: #999999;
+  font-weight: 500;
+  font-size: 17px;
+}
+
+form {
+  display: inline;
+}

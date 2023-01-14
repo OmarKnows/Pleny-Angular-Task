@@ -10,6 +10,6 @@ export class StoreService {
   constructor(private agsm: AgsmService) {
     this.agsm.linkDevTools(false);
     this.agsm.addReducer('productsList', productsReducer);
-    this.agsm.addReducer('userInfo', authReducer);
+    this.agsm.addReducer('user', authReducer);
   }
 }

@@ -1,14 +1,25 @@
-<p class="header">Header 1</p>
-<p class="path">Home / Products / Route / Route</p>
+<p class="header">{{ title }}</p>
+<p class="path">Home / Products {{ route }}</p>
 <div class="row">
   <div class="filterColumn">
     <div class="filter">
       <p class="filterTitle">Products</p>
       <div class="radioGroup">
-        <input type="radio" name="product" value="All" />
+        <input
+          type="radio"
+          name="product"
+          value="Products"
+          checked
+          (change)="filter($event)"
+        />
         <label>All()</label><br />
         <div *ngFor="let category of productCategories">
-          <input type="radio" name="product" [value]="category" />
+          <input
+            type="radio"
+            name="product"
+            [value]="category"
+            (change)="filter($event)"
+          />
           <label>{{ category }}()</label><br />
         </div>
       </div>
