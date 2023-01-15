@@ -17,6 +17,11 @@ export class ProductsComponent implements OnInit, OnDestroy {
   productCategories: string[] = [];
   title: string = 'Products';
   route: string = '';
+  pageSize: number = 10;
+  currentPage: number = 1;
+  numberOfPages: number = 0;
+  paginationArray: number[] = [];
+  total: number = 0;
 
   constructor(
     private agsm: AgsmService,
@@ -29,11 +34,19 @@ export class ProductsComponent implements OnInit, OnDestroy {
       .stateSelector((state) => state.productsList)
       .subscribe((stateValue) => {
         const { productsResponse } = stateValue;
-        const { products, limit, skip, total } = productsResponse;
+        const { products, total } = productsResponse;
         this.products = products;
+        this.numberOfPages = Math.ceil(total / this.pageSize);
+        this.paginationArray = Array(this.numberOfPages)
+          .fill(0)
+          .map((x, i) => i);
       });
 
-    this.productActions.getproducts();
+    this.productActions.getProducts(
+      this.pageSize,
+      this.currentPage * this.pageSize - this.pageSize
+    );
+
     this.productsService.getProductCategories().subscribe((response) => {
       this.productCategories = response;
     });
@@ -48,10 +61,26 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.title = event.target.value;
 
     if (event.target.value === 'Products') {
-      this.productActions.getproducts();
+      this.productActions.getProducts(
+        this.pageSize,
+        this.currentPage * this.pageSize - this.pageSize
+      );
     } else {
       this.route = '/ ' + event.target.value;
       this.productActions.filterProducts(event.target.value);
     }
+  }
+
+  paginate(event: any) {
+    this.currentPage = event.target.value;
+    this.productActions.getProducts(
+      this.pageSize,
+      this.currentPage * this.pageSize - this.pageSize
+    );
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
   }
 }

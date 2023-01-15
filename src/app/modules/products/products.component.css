@@ -48,7 +48,7 @@
   margin-top: 15px;
   margin-bottom: 8px;
   text-overflow: ellipsis;
-  overflow: hidden; 
+  overflow: hidden;
   white-space: nowrap;
 }
 
@@ -57,6 +57,9 @@
   font-weight: 700;
   line-height: 17px;
   letter-spacing: 0em;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .cardText2 {
@@ -64,6 +67,9 @@
   font-weight: 400;
   line-height: 17px;
   letter-spacing: 0em;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .cardText3 {
@@ -71,6 +77,9 @@
   font-weight: 600;
   line-height: 17px;
   letter-spacing: 0em;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .cardBtn {
@@ -92,7 +101,7 @@
 
 .cardDescription {
   text-overflow: ellipsis;
-  overflow: hidden; 
+  overflow: hidden;
   white-space: nowrap;
   width: 239px;
   height: 24px;
@@ -188,33 +197,26 @@ label {
   clear: both;
 }
 
+.flex-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
 .pagination {
   display: flex;
-  justify-content: center;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 72px;
+  margin-bottom: 104px;
 }
 
-/* Pagination links */
-.pagination a {
-  color: #1e1e1e;
-  font-size: 15px;
-  font-weight: 500;
-  float: left;
-  padding: 8px 16px;
-  text-decoration: none;
-  transition: background-color 0.3s;
-  background-color: transparent;
-  margin: 0px 6px;
+.pageButton {
+  height: 32px;
+  width: 32px;
+  background-color: #41cccc;
   border: 1px solid #f6f6f6;
   border-radius: 8px;
-}
-
-/* Style the active/current link */
-.pagination a.active {
-  background-color: dodgerblue;
-  color: white;
-}
-
-/* Add a grey background color on mouse-over */
-.pagination a:hover:not(.active) {
-  background-color: #41cccc;
+  margin: 0px 6px;
+  text-align: center;
 }

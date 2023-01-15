@@ -20,7 +20,8 @@
             [value]="category"
             (change)="filter($event)"
           />
-          <label>{{ category }}</label><br />
+          <label>{{ category }}</label
+          ><br />
         </div>
       </div>
     </div>
@@ -75,15 +76,17 @@
         </div>
       </div>
     </div>
+    <div class="flex-container">
+      <div class="pagination">
+        <button
+          class="pageButton"
+          *ngFor="let button of paginationArray; let i = index"
+          (click)="paginate($event)"
+          value="{{ i + 1 }}"
+        >
+          {{ i + 1 }}
+        </button>
+      </div>
+    </div>
   </div>
 </div>
-<!-- <div class="pagination">
-  <a><</a>
-  <a>1</a>
-  <a>2</a>
-  <a>3</a>
-  <a>4</a>
-  <a>5</a>
-  <a>6</a>
-  <a>></a>
-</div> -->

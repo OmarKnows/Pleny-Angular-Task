@@ -25,12 +25,15 @@ const httpOptions = {
 export class productActionsService {
   constructor(private http: HttpClient, private agsm: AgsmService) {}
 
-  async getproducts() {
+  async getProducts(limit: number, skip: number) {
     this.agsm.dispatch(PRODUCTS_REQUEST);
 
     try {
       const products = await this.http
-        .get<any>('https://dummyjson.com/products', httpOptions)
+        .get<any>(
+          `https://dummyjson.com/products?limit=${limit}&skip=${skip}`,
+          httpOptions
+        )
         .toPromise();
 
       this.agsm.dispatch(PRODUCTS_SUCCESS, products);
