@@ -22,7 +22,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.authSubscription = this.agsm
       .stateSelector((state) => state.user)
       .subscribe((stateValue) => {
-        this.isAuthenticated = stateValue.isAuthenticated;
+        console.log(stateValue);
+        this.isAuthenticated = !!stateValue;
       });
   }
 

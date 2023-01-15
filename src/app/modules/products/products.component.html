@@ -12,7 +12,7 @@
           checked
           (change)="filter($event)"
         />
-        <label>All()</label><br />
+        <label>All</label><br />
         <div *ngFor="let category of productCategories">
           <input
             type="radio"
@@ -20,7 +20,7 @@
             [value]="category"
             (change)="filter($event)"
           />
-          <label>{{ category }}()</label><br />
+          <label>{{ category }}</label><br />
         </div>
       </div>
     </div>
