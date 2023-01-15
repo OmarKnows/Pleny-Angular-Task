@@ -51,7 +51,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
       this.productActions.getproducts();
     } else {
       this.route = '/ ' + event.target.value;
-      this.productActions.searchProducts(event.target.value);
+      this.productActions.filterProducts(event.target.value);
     }
   }
 }

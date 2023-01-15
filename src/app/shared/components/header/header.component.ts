@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AgsmService } from 'agsm';
 import { Subscription } from 'rxjs';
-import { authActionsService } from 'src/app/app-states/actions/auth/auth-action.service';
 import { productActionsService } from 'src/app/app-states/actions/products/product-action.service';
 
 @Component({
@@ -32,7 +31,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(form: NgForm) {
-    console.log(form.value);
-    this.productActions.searchProducts(form.value);
+    this.productActions.searchProducts(form.value.search);
   }
 }

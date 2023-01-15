@@ -41,7 +41,6 @@ export class productActionsService {
 
   async searchProducts(keyword: string) {
     this.agsm.dispatch(SEARCH_REQUEST);
-
     try {
       const products = await this.http
         .get<any>(
@@ -49,7 +48,6 @@ export class productActionsService {
           httpOptions
         )
         .toPromise();
-      console.log(products);
       this.agsm.dispatch(SEARCH_SUCCESS, products);
     } catch (e: any) {
       this.agsm.dispatch(SEARCH_FAIL, e.message);
@@ -66,7 +64,6 @@ export class productActionsService {
           httpOptions
         )
         .toPromise();
-      console.log(products);
       this.agsm.dispatch(FILTER_SUCCESS, products);
     } catch (e: any) {
       this.agsm.dispatch(FILTER_FAIL, e.message);
