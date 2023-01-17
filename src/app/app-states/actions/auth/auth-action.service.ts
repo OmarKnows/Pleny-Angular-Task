@@ -40,7 +40,7 @@ export class authActionsService {
           httpOptions
         )
         .toPromise();
-
+      console.log(user);
       this.agsm.dispatch(LOGIN_SUCCESS, user);
       localStorage.setItem('userInfo', JSON.stringify(user));
       this.router.navigate(['/products']);

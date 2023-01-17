@@ -20,11 +20,14 @@
           required
         />
       </form>
-      <img
-        *ngIf="isAuthenticated"
-        class="headerItem"
-        src="../../../../assets/Cart.png"
-      />
+      <div class="relative-container">
+        <img
+          *ngIf="isAuthenticated"
+          class="headerItem"
+          src="../../../../assets/Cart.png"
+        />
+        <div class="cart-items">{{ cartItems }}</div>
+      </div>
       <a *ngIf="isAuthenticated" class="headerItem">Account</a>
 
       <a *ngIf="!isAuthenticated" class="headerItem" routerLink="/login"

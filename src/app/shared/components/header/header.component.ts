@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { AgsmService } from 'agsm';
 import { Subscription } from 'rxjs';
 import { productActionsService } from 'src/app/app-states/actions/products/product-action.service';
+import { cartActionsService } from 'src/app/app-states/actions/cart/cart-action.service';
 
 @Component({
   selector: 'app-header',
@@ -12,10 +13,15 @@ import { productActionsService } from 'src/app/app-states/actions/products/produ
 export class HeaderComponent implements OnInit, OnDestroy {
   isAuthenticated: boolean = false;
   private authSubscription: Subscription;
+  private cartSubscription: Subscription;
+
+  userId = 0;
+  cartItems = 0;
 
   constructor(
     private agsm: AgsmService,
-    private productActions: productActionsService
+    private productActions: productActionsService,
+    private cartActions: cartActionsService
   ) {}
 
   ngOnInit(): void {
@@ -24,11 +30,23 @@ export class HeaderComponent implements OnInit, OnDestroy {
       .subscribe((stateValue) => {
         console.log(stateValue);
         this.isAuthenticated = !!stateValue;
+        this.userId = stateValue.id;
       });
+
+    this.cartSubscription = this.agsm
+      .stateSelector((state) => state.cart)
+      .subscribe((stateValue) => {
+        this.cartItems = stateValue.cart.carts[0].totalQuantity;
+
+        console.log(stateValue);
+      });
+
+    this.cartActions.getUserCart(this.userId);
   }
 
   ngOnDestroy(): void {
     this.authSubscription.unsubscribe();
+    this.cartSubscription.unsubscribe();
   }
 
   onSubmit(form: NgForm) {

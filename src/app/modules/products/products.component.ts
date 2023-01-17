@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AgsmService } from 'agsm';
 import { Subscription } from 'rxjs';
+import { cartActionsService } from 'src/app/app-states/actions/cart/cart-action.service';
 import { productActionsService } from 'src/app/app-states/actions/products/product-action.service';
 import { Product } from 'src/app/shared/models/product.model';
 import { ProductService } from './products.service';
@@ -26,7 +27,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
   constructor(
     private agsm: AgsmService,
     private productActions: productActionsService,
-    private productsService: ProductService
+    private productsService: ProductService,
+    private cartService: cartActionsService
   ) {}
 
   ngOnInit(): void {
@@ -69,6 +71,10 @@ export class ProductsComponent implements OnInit, OnDestroy {
       this.route = '/ ' + event.target.value;
       this.productActions.filterProducts(event.target.value);
     }
+  }
+
+  addToCart() {
+    this.cartService.addToCart();
   }
 
   paginate(event: any) {
