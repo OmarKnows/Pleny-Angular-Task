@@ -211,10 +211,20 @@ label {
   margin-bottom: 104px;
 }
 
-.pageButton {
+.pageButtonActive {
   height: 32px;
   width: 32px;
   background-color: #41cccc;
+  border: 1px solid #f6f6f6;
+  border-radius: 8px;
+  margin: 0px 6px;
+  text-align: center;
+}
+
+.pageButton {
+  height: 32px;
+  width: 32px;
+  background-color: #f6f6f6;
   border: 1px solid #f6f6f6;
   border-radius: 8px;
   margin: 0px 6px;

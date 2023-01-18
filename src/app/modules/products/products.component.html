@@ -79,8 +79,8 @@
     <div class="flex-container">
       <div class="pagination">
         <button
-          class="pageButton"
           *ngFor="let button of paginationArray; let i = index"
+          [ngClass]="currentPage === i + 1 ? 'pageButtonActive' : 'pageButton'"
           (click)="paginate($event)"
           value="{{ i + 1 }}"
         >

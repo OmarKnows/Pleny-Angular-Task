@@ -79,6 +79,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   paginate(event: any) {
     this.currentPage = event.target.value;
+    console.log(this.currentPage);
     this.productActions.getProducts(
       this.pageSize,
       this.currentPage * this.pageSize - this.pageSize
