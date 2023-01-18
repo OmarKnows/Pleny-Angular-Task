@@ -12,26 +12,34 @@ import {
   FILTER_SUCCESS,
 } from '../../types/products/types';
 import { AgsmService } from 'agsm';
-
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-  }),
-};
+import { authActionsService } from '../auth/auth-action.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class productActionsService {
-  constructor(private http: HttpClient, private agsm: AgsmService) {}
+  constructor(
+    private http: HttpClient,
+    private agsm: AgsmService,
+    private authActions: authActionsService
+  ) {}
 
   async getProducts(limit: number, skip: number) {
     this.agsm.dispatch(PRODUCTS_REQUEST);
 
+    const Authorization =
+      'Bearer ' + JSON.parse(this.authActions.getUserInfo() || '{}').token;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization,
+        'Content-Type': 'application/json',
+      }),
+    };
+
     try {
       const products = await this.http
         .get<any>(
-          `https://dummyjson.com/products?limit=${limit}&skip=${skip}`,
+          `https://dummyjson.com/auth/products?limit=${limit}&skip=${skip}`,
           httpOptions
         )
         .toPromise();
@@ -46,10 +54,7 @@ export class productActionsService {
     this.agsm.dispatch(SEARCH_REQUEST);
     try {
       const products = await this.http
-        .get<any>(
-          `https://dummyjson.com/products/search?q=${keyword}`,
-          httpOptions
-        )
+        .get<any>(`https://dummyjson.com/products/search?q=${keyword}`)
         .toPromise();
       this.agsm.dispatch(SEARCH_SUCCESS, products);
     } catch (e: any) {
@@ -62,10 +67,7 @@ export class productActionsService {
 
     try {
       const products = await this.http
-        .get<any>(
-          `https://dummyjson.com/products/category/${category}`,
-          httpOptions
-        )
+        .get<any>(`https://dummyjson.com/products/category/${category}`)
         .toPromise();
       this.agsm.dispatch(FILTER_SUCCESS, products);
     } catch (e: any) {

@@ -49,10 +49,14 @@ export class authActionsService {
     }
   }
 
+  getUserInfo() {
+    return localStorage.getItem('userInfo');
+  }
+
   autoLogin() {
-    const userInfo = localStorage.getItem('userInfo');
-    if (!userInfo) return;
-    this.router.navigate(['/products']);
+    // const userInfo = localStorage.getItem('userInfo');
+    // if (!userInfo) return;
+    // this.router.navigate(['/products']);
     // this.user.next(JSON.parse(userInfo));
   }
 }
