@@ -10,7 +10,7 @@ import { User } from '../shared/models/user.model';
 })
 export class StoreService {
   user: User | null = null;
-  // cart: any = null;
+  cart: any = null;
 
   constructor(private agsm: AgsmService, private store: AgsmService) {
     this.agsm.linkDevTools(false);
@@ -19,9 +19,9 @@ export class StoreService {
       ? JSON.parse(localStorage.getItem('userInfo') || '{}')
       : null;
 
-    // this.cart = localStorage.getItem('cart')
-    //   ? JSON.parse(localStorage.getItem('cart') || '{}')
-    //   : null;
+    this.cart = localStorage.getItem('cart')
+      ? JSON.parse(localStorage.getItem('cart') || '{}')
+      : null;
 
     this.agsm.addReducer('productsList', productsReducer);
     this.agsm.addReducer('user', authReducer);
@@ -29,7 +29,7 @@ export class StoreService {
 
     this.store.setStoreInitialState({
       user: this.user,
-      // cart: this.cart,
+      cart: this.cart,
     });
   }
 }

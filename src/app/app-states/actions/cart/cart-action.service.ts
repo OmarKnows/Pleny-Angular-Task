@@ -4,7 +4,9 @@ import {
   CART_FAIL,
   CART_REQUEST,
   CART_SUCCESS,
-  ADD_TO_CART,
+  ADD_TO_CART_FAIL,
+  ADD_TO_CART_REQUEST,
+  ADD_TO_CART_SUCCESS,
 } from '../../types/cart/types';
 import { AgsmService } from 'agsm';
 import { BehaviorSubject, scan, Subject } from 'rxjs';
@@ -28,21 +30,29 @@ export class cartActionsService {
     this.agsm.dispatch(CART_REQUEST);
 
     try {
-      const cart = await this.http
+      const cart: any = await this.http
         .get<any>(`https://dummyjson.com/carts/user/${userId}`, httpOptions)
         .toPromise();
 
       this.agsm.dispatch(CART_SUCCESS, cart);
-      this.cartItems.next(cart.carts[0].totalQuantity);
       localStorage.setItem('cart', JSON.stringify(cart));
+      this.cartItems.next(cart.carts[0].totalQuantity);
     } catch (e: any) {
       this.agsm.dispatch(CART_FAIL, e.message);
     }
   }
 
-  addToCart() {
-    // console.log(this.cartItems.getValue() + 1);
-    this.cartItems.next(this.cartItems.getValue() + 1);
-    this.agsm.dispatch(ADD_TO_CART, this.cartItems.getValue() + 1);
+  async addToCart(cartId: number, id: number, quantity: number) {
+    this.agsm.dispatch(ADD_TO_CART_REQUEST);
+
+    try {
+      let cart = JSON.parse(localStorage.getItem('cart') || '{}');
+      cart.carts[0].totalQuantity++;
+
+      localStorage.setItem('cart', JSON.stringify(cart));
+      this.cartItems.next(cart.carts[0].totalQuantity);
+    } catch (e: any) {
+      this.agsm.dispatch(ADD_TO_CART_FAIL, e.message);
+    }
   }
 }

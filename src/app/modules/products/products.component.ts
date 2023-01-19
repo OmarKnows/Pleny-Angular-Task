@@ -13,6 +13,7 @@ import { ProductService } from './products.service';
 })
 export class ProductsComponent implements OnInit, OnDestroy {
   productsListSubscription: Subscription;
+  cartSubscription: Subscription;
 
   products: Product[] = [];
   productCategories: string[] = [];
@@ -20,9 +21,10 @@ export class ProductsComponent implements OnInit, OnDestroy {
   route: string = '';
   pageSize: number = 10;
   currentPage: number = 1;
-  numberOfPages: number = 0;
+  numberOfPages: number = 1;
   paginationArray: number[] = [];
   total: number = 0;
+  cartID: number = 0;
 
   constructor(
     private agsm: AgsmService,
@@ -32,6 +34,12 @@ export class ProductsComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.cartSubscription = this.agsm
+      .stateSelector((state) => state.cart)
+      .subscribe((stateValue) => {
+        this.cartID = stateValue.cart.carts[0].id;
+      });
+
     this.productsListSubscription = this.agsm
       .stateSelector((state) => state.productsList)
       .subscribe((stateValue) => {
@@ -41,7 +49,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
         this.numberOfPages = Math.ceil(total / this.pageSize);
         this.paginationArray = Array(this.numberOfPages)
           .fill(0)
-          .map((x, i) => i);
+          .map((_x, i) => i);
       });
 
     this.productActions.getProducts(
@@ -59,7 +67,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   filter(event: any) {
-    console.log(event.target.value);
     this.title = event.target.value;
 
     if (event.target.value === 'Products') {
@@ -73,13 +80,13 @@ export class ProductsComponent implements OnInit, OnDestroy {
     }
   }
 
-  addToCart() {
-    this.cartService.addToCart();
+  addToCart(productId: number) {
+    //console.log(productId);
+    this.cartService.addToCart(this.cartID, productId, 1);
   }
 
   paginate(event: any) {
     this.currentPage = event.target.value;
-    console.log(this.currentPage);
     this.productActions.getProducts(
       this.pageSize,
       this.currentPage * this.pageSize - this.pageSize

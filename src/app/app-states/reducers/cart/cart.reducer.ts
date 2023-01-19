@@ -1,5 +1,7 @@
 import {
-  ADD_TO_CART,
+  ADD_TO_CART_FAIL,
+  ADD_TO_CART_REQUEST,
+  ADD_TO_CART_SUCCESS,
   CART_FAIL,
   CART_REQUEST,
   CART_SUCCESS,
@@ -29,9 +31,21 @@ export const cartReducer = (
         cart: {},
         error: action.payload,
       };
-    case ADD_TO_CART:
+    case ADD_TO_CART_REQUEST:
       return {
-        cartItems: action.payload,
+        loading: true,
+      };
+    case ADD_TO_CART_SUCCESS:
+      return {
+        loading: false,
+        cart: action.payload,
+        error: null,
+      };
+    case ADD_TO_CART_FAIL:
+      return {
+        loading: false,
+        cart: {},
+        error: action.payload,
       };
     default:
       return state;

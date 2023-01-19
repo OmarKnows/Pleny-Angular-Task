@@ -28,7 +28,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.authSubscription = this.agsm
       .stateSelector((state) => state.user)
       .subscribe((stateValue) => {
-        console.log(stateValue);
         this.isAuthenticated = !!stateValue;
         this.userId = stateValue.id;
       });
@@ -37,8 +36,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
       .stateSelector((state) => state.cart)
       .subscribe((stateValue) => {
         this.cartItems = stateValue.cart.carts[0].totalQuantity;
-
-        console.log(stateValue);
       });
 
     this.cartActions.getUserCart(this.userId);
