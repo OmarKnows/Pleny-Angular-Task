@@ -18,6 +18,8 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    console.log(this.authActions.isAuthenticated());
+
     this.authSubscription = this.agsm
       .stateSelector((state) => state.user)
       .subscribe((stateValue) => {});

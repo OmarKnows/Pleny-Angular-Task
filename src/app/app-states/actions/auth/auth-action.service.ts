@@ -4,11 +4,10 @@ import {
   LOGIN_FAIL,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
+  LOGOUT,
 } from '../../types/auth/types';
 import { AgsmService } from 'agsm';
 import { Router } from '@angular/router';
-import { User } from 'src/app/shared/models/user.model';
-import { Subject } from 'rxjs';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -28,6 +27,7 @@ export class authActionsService {
 
   async login(username: string, password: string) {
     this.agsm.dispatch(LOGIN_REQUEST);
+    console.log('test2');
 
     try {
       const user = await this.http
@@ -40,12 +40,25 @@ export class authActionsService {
           httpOptions
         )
         .toPromise();
+      console.log(user);
       this.agsm.dispatch(LOGIN_SUCCESS, user);
       localStorage.setItem('userInfo', JSON.stringify(user));
       this.router.navigate(['/products']);
     } catch (e: any) {
       this.agsm.dispatch(LOGIN_FAIL, e.message);
     }
+  }
+
+  logout() {
+    this.agsm.dispatch(LOGOUT);
+    localStorage.removeItem('userInfo');
+    localStorage.removeItem('cart');
+    this.router.navigate(['/login']);
+  }
+
+  isAuthenticated(): boolean {
+    if (localStorage.getItem('userInfo')) return true;
+    else return false;
   }
 
   getUserInfo() {

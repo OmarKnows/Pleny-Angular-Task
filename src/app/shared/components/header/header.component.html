@@ -2,7 +2,7 @@
   <div class="flex-container">
     <img src="../../../../assets/logo.png" alt="logo" class="logo" />
     <label class="brand">ClickTik</label>
-    <a routerLink="/">Home</a>
+    <a routerLink="/products">Home</a>
   </div>
   <div class="headerLinks">
     <div class="flex-container">
@@ -24,7 +24,9 @@
         <img class="headerItem" src="../../../../assets/Cart.png" />
         <div class="cart-items">{{ cartItems }}</div>
       </div>
-      <a *ngIf="isAuthenticated" class="headerItem">Account</a>
+      <a *ngIf="isAuthenticated" class="headerItem" (click)="logout()"
+        >Account</a
+      >
 
       <a *ngIf="!isAuthenticated" class="headerItem" routerLink="/login"
         >Login</a

@@ -28,6 +28,7 @@ export class cartActionsService {
 
   async getUserCart(userId: number) {
     this.agsm.dispatch(CART_REQUEST);
+    console.log('cart request');
 
     try {
       const cart: any = await this.http

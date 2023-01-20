@@ -10,6 +10,7 @@ import { FooterComponent } from './shared/components/footer/footer.component';
 import { ProductsComponent } from './modules/products/products.component';
 import { LoginComponent } from './modules/login/login.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { AuthGuard } from './auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     HttpClientModule,
     NgxPaginationModule,
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
